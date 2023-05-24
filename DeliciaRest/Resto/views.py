@@ -7,5 +7,15 @@ def index(request):
 def login(request):
     return render(request, 'registration/login.html')
 
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()  
+            return redirect("")
+    else:
+        form = UserRegisterForm()
+    context = {'form':form}
+    return render(request,'registration/register.html',context)
 
 
